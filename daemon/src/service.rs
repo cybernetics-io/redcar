@@ -38,7 +38,7 @@ use trigger::Type as ActionType;
 use trigger::edge::Edge;
 use trigger::level::Level;
 
-const CHANNEL_BUFFER_SIZE: usize = 16;
+const CHANNEL_BUFFER_SIZE: usize = 512;
 
 type WatchResponseStream = ReceiverStream<Result<WatchResponse, Status>>;
 type ObserveResponseStream =
@@ -59,7 +59,7 @@ impl Service {
             trigger: Arc::clone(&kv.trigger),
         };
         let os = ObserveService {
-            //trigger: kv.trigger.clone(),
+            trigger: Arc::clone(&kv.trigger),
         };
         let kvs = KVService {
             kv: Arc::new(Mutex::new(kv)),
@@ -168,7 +168,7 @@ impl Watch for WatchService {
 
 #[derive(Clone)]
 pub struct ObserveService {
-    //trigger: Arc<Mut<Trigger>>
+    trigger: Arc<Mut<Trigger>>
 }
 
 #[tonic::async_trait]
@@ -180,7 +180,8 @@ impl Observe for ObserveService {
         request: Request<Streaming<ObserveRequest>>,
     ) -> Result<Response<Self::ObserveStream>, Status> {
         let mut stream = request.into_inner();
-        let output = async_stream::try_stream! {
+
+        //let output = async_stream::try_stream! {
         while let Some(observe) = stream.next().await {
             let observe = observe?;
             match observe.observe_type {
@@ -207,7 +208,7 @@ impl Observe for ObserveService {
                 }
             }
         }
-        };
+        //};
         Ok(Response::new(Box::pin(output)))
     }
 }

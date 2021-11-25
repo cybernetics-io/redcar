@@ -4,6 +4,8 @@ WORKDIR /usr/src/redcar
 COPY . .
 
 RUN rustup component add rustfmt
+RUN rustup component add clippy
+
 RUN cargo build --release
 RUN cp target/release/redcard /usr/bin/
 

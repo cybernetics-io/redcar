@@ -91,6 +91,5 @@ async fn start_server(num: usize, host: &str, service: Service, backlog: u32) {
         .add_service(watch)
         .add_service(observe)
         .serve_with_incoming(stream)
-        .await
-        .unwrap();
+        .await?;
 }
