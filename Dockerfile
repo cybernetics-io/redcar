@@ -1,0 +1,12 @@
+FROM rust:latest
+
+WORKDIR /usr/src/redcar
+COPY . .
+
+RUN rustup component add rustfmt
+RUN cargo build --release
+RUN cp target/release/redcard /usr/bin/
+
+EXPOSE 1985 1986
+
+ENTRYPOINT ["redcard", "-o  stdout", "-d"]

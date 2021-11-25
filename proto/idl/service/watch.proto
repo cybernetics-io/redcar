@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package service;
+
+import "txn/type.proto";
+
+service Watch {
+  rpc Watch(WatchRequest) returns (stream WatchResponse) {}
+}
+
+message WatchRequest {
+  oneof watch_type {
+    WatchCreate create = 1;
+    WatchCancel cancel = 2;
+  }
+}
+
+message WatchCancel {
+  int64 watch_id = 1;
+}
+
+message WatchCreate {
+  bytes key = 1;
+  enum FilterType {
+    PUT = 0;
+    DELETE = 1;
+  }
+  repeated FilterType filters = 2;
+  int64 watch_id = 3;
+}
+
+message WatchResponse {
+  int64 watch_id = 1;
+  bool created = 2;
+  bool canceled = 3;
+  string cancel_reason = 4;
+  repeated txn.Event events = 5;
+}

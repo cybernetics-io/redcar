@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package service;
+
+import "txn/type.proto";
+
+service KV {
+  rpc Put(PutRequest) returns (PutResponse) {}
+  rpc Range(RangeRequest) returns (RangeResponse) {}
+}
+
+message PutResponse {
+  txn.KeyValue kv = 1;
+}
+
+message PutRequest {
+  bytes key = 1;
+  bytes value = 2;
+  bool ignore_value = 3;
+}
+
+message RangeRequest {
+  enum SortOrder {
+    NONE = 0;
+    ASCEND = 1;
+    DESCEND = 2;
+  }
+  enum SortTarget {
+    KEY = 0;
+    VERSION = 1;
+    CREATE = 2;
+    MOD = 3;
+    VALUE = 4;
+  }
+  bytes key = 1;
+  int64 limit = 2;
+  SortOrder sort_order = 3;
+  SortTarget sort_target = 4;
+  bool keys_only = 5;
+  bool count_only = 6;
+}
+
+message RangeResponse {
+  repeated txn.KeyValue kvs = 1;
+  bool more = 2;
+  int64 count = 3;
+}
