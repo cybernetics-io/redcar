@@ -25,7 +25,7 @@ use futures_util::stream::StreamExt;
 use futures_util::pin_mut;
 use tokio_stream::wrappers::ReceiverStream;
 use tokio::sync::mpsc;
-use tokio::sync::{Mutex, watch};
+use tokio::sync::{Mutex, watch, broadcast};
 use std::sync::Mutex as Mut;
 use proto::service::observe_request::ObserveType;
 use proto::service::watch_request::WatchType;
@@ -41,8 +41,8 @@ use trigger::level::Level;
 const CHANNEL_BUFFER_SIZE: usize = 512;
 
 type WatchResponseStream = ReceiverStream<Result<WatchResponse, Status>>;
-type ObserveResponseStream =
-    Pin<Box<dyn Stream<Item = Result<ObserveResponse, Status>> + Send + Sync>>;
+type ObserveResponseStream = ReceiverStream<Result<ObserveResponse, Status>>;
+    //Pin<Box<dyn Stream<Item = Result<ObserveResponse, Status>> + Send + Sync>>;
 
 #[derive(Clone)]
 pub struct Service {
@@ -135,25 +135,16 @@ impl Watch for WatchService {
                 todo!()
             }
         };
-        let (wtx, mut wrx) = watch::channel(Event {
-            r#type: 0,
-            kv: None,
-        });
-        self.trigger.lock().unwrap().register(
-            create.key.clone(),
-            Box::new(Edge {
-                t: ActionType::Edge,
-                sender: Arc::new(Mut::new(wtx)),
-            }),
-        );
+        let mut wrx = self.trigger.lock().unwrap().edge(create.key.clone());
         tokio::spawn(async move {
+            let wid = create.watch_id;
             while wrx.changed().await.is_ok() {
                 let event = Event {
                     r#type: wrx.borrow().r#type,
                     kv: wrx.borrow().kv.clone(),
                 };
                 tx.send(Ok(WatchResponse {
-                    watch_id: 88,
+                    watch_id: wid,
                     created: false,
                     canceled: false,
                     cancel_reason: "".to_string(),
@@ -180,35 +171,35 @@ impl Observe for ObserveService {
         request: Request<Streaming<ObserveRequest>>,
     ) -> Result<Response<Self::ObserveStream>, Status> {
         let mut stream = request.into_inner();
+        let (mut tx, rx) = mpsc::channel(CHANNEL_BUFFER_SIZE);
 
-        //let output = async_stream::try_stream! {
-        while let Some(observe) = stream.next().await {
-            let observe = observe?;
-            match observe.observe_type {
-                Some(req_type) => {
-                    match req_type {
+        tokio::spawn(async move {
+            // listening on request stream
+            while let Some(req) = stream.message().await.unwrap() {
+                let create = match req.observe_type {
+                    Some(req_type) => match req_type {
                         ObserveType::Create(create) => {
-                            //create
-                            println!("find create request");
-                            yield ObserveResponse{
-                                observe_id: create.observe_id,
-                                created: false,
-                                canceled: false,
-                                cancel_reason: "".to_string(),
-                                events: vec![]
-                            }
+                            create
                         }
-                        ObserveType::Cancel(cancel) => {
-                            //cancel
+                        ObserveType::Cancel(_) => {
+                            panic!("aa")
                         }
-                    };
-                }
-                None => {
-                    println!("watch request error")
-                }
+                    },
+                    None => {
+                        todo!()
+                    }
+                };
+                // sending data as soon it is available
+                tx.send(Ok(ObserveResponse{
+                    observe_id: 77,
+                    created: false,
+                    canceled: false,
+                    cancel_reason: "".to_string(),
+                    events: vec![]
+                }))
+                    .await;
             }
-        }
-        //};
-        Ok(Response::new(Box::pin(output)))
+        });
+        Ok(Response::new(ReceiverStream::new(rx)))
     }
 }

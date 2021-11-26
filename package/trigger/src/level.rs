@@ -6,12 +6,17 @@ use proto::txn::Event;
 use crate::{Action, Type};
 
 pub struct Level {
-    t: Type,
-    sender: Sender<Event>,
+    pub t: Type,
+    pub sender: Arc<Mutex<Sender<Event>>>,
 }
 
 impl Action for Level {
     fn notify(&self, e: Event) {
-        todo!()
+        match self.sender.lock().unwrap().send(e) {
+            Ok(_) => {}
+            Err(err) => {
+                println!("edge notice error")
+            }
+        }
     }
 }
