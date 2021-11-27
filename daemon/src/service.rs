@@ -42,7 +42,6 @@ const CHANNEL_BUFFER_SIZE: usize = 512;
 
 type WatchResponseStream = ReceiverStream<Result<WatchResponse, Status>>;
 type ObserveResponseStream = ReceiverStream<Result<ObserveResponse, Status>>;
-    //Pin<Box<dyn Stream<Item = Result<ObserveResponse, Status>> + Send + Sync>>;
 
 #[derive(Clone)]
 pub struct Service {
