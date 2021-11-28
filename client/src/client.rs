@@ -55,4 +55,8 @@ impl Client {
         );
         let resp = self.kv_client.range(req);
     }
+
+    pub fn watch() {
+
+    }
 }

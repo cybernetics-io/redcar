@@ -11,4 +11,4 @@ RUN cp target/release/redcard /usr/bin/
 
 EXPOSE 1985 1986
 
-ENTRYPOINT ["redcard", "-o  stdout", "-d"]
+ENTRYPOINT ["redcar-server", "-o  stdout", "-d"]
