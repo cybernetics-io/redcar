@@ -1,3 +1,3 @@
-pub struct Config{
-    pub host: &'static str
+pub struct Config {
+    pub host: &'static str,
 }

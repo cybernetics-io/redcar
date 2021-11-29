@@ -158,7 +158,7 @@ impl Watch for WatchService {
 
 #[derive(Clone)]
 pub struct ObserveService {
-    trigger: Arc<Mut<Trigger>>
+    trigger: Arc<Mut<Trigger>>,
 }
 
 #[tonic::async_trait]
@@ -177,9 +177,7 @@ impl Observe for ObserveService {
             while let Some(req) = stream.message().await.unwrap() {
                 let create = match req.observe_type {
                     Some(req_type) => match req_type {
-                        ObserveType::Create(create) => {
-                            create
-                        }
+                        ObserveType::Create(create) => create,
                         ObserveType::Cancel(_) => {
                             panic!("aa")
                         }
@@ -189,14 +187,14 @@ impl Observe for ObserveService {
                     }
                 };
                 // sending data as soon it is available
-                tx.send(Ok(ObserveResponse{
+                tx.send(Ok(ObserveResponse {
                     observe_id: 77,
                     created: false,
                     canceled: false,
                     cancel_reason: "".to_string(),
-                    events: vec![]
+                    events: vec![],
                 }))
-                    .await;
+                .await;
             }
         });
         Ok(Response::new(ReceiverStream::new(rx)))

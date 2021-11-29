@@ -30,7 +30,7 @@ impl Trigger {
     pub fn new() -> Self {
         Trigger {
             ss: HashMap::new(),
-            map: HashMap::new()
+            map: HashMap::new(),
         }
     }
 
@@ -41,12 +41,10 @@ impl Trigger {
             }
             Some(node) => {
                 for action in node.lock().unwrap().iter() {
-                    action.notify(
-                        Event {
-                            r#type: 0,
-                            kv: Option::from(kv.clone()),
-                        }
-                    )
+                    action.notify(Event {
+                        r#type: 0,
+                        kv: Option::from(kv.clone()),
+                    })
                 }
             }
         }
@@ -59,9 +57,7 @@ impl Trigger {
                 node.push(a);
                 self.map.insert(key, Arc::new(Mutex::new(node)));
             }
-            Some(node) => {
-                node.lock().unwrap().push(a)
-            }
+            Some(node) => node.lock().unwrap().push(a),
         }
     }
 
@@ -70,7 +66,7 @@ impl Trigger {
             r#type: 0,
             kv: None,
         });
-        let a:Box<dyn Action + Send + Sync> = Box::new(Edge {
+        let a: Box<dyn Action + Send + Sync> = Box::new(Edge {
             t: Type::Edge,
             sender: Arc::new(Mutex::new(rx)),
         });
@@ -80,9 +76,7 @@ impl Trigger {
                 node.push(a);
                 self.map.insert(key, Arc::new(Mutex::new(node)));
             }
-            Some(node) => {
-                node.lock().unwrap().push(a)
-            }
+            Some(node) => node.lock().unwrap().push(a),
         }
         tx
     }
@@ -96,11 +90,9 @@ impl Trigger {
                     None => {
                         panic!("aa")
                     }
-                    Some(s) => {
-                        s
-                    }
+                    Some(s) => s,
                 };
-                let a:Box<dyn Action + Send + Sync> = Box::new(Level {
+                let a: Box<dyn Action + Send + Sync> = Box::new(Level {
                     t: Type::Level,
                     sender: Arc::new(Mutex::new(vv)),
                 });
@@ -110,15 +102,11 @@ impl Trigger {
                         node.push(a);
                         self.map.insert(key.clone(), Arc::new(Mutex::new(node)));
                     }
-                    Some(node) => {
-                        node.lock().unwrap().push(a)
-                    }
+                    Some(node) => node.lock().unwrap().push(a),
                 }
                 tx
             }
-            Some(sender) => {
-                sender.subscribe()
-            }
+            Some(sender) => sender.subscribe(),
         }
     }
 }
