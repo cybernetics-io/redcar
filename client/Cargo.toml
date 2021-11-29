@@ -9,3 +9,6 @@ edition = "2018"
 [dependencies]
 proto = { path = "../proto", version = "0.1.0" }
 tonic = "0.5"
+
+[dev-dependencies]
+tokio-test = "*"
