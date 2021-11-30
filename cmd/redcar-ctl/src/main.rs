@@ -5,7 +5,7 @@ use client::config::Config;
 /// This doc string acts as a help message when the user runs '--help'
 /// as do all doc strings on fields
 #[derive(Parser)]
-#[clap(version = "1.0", author = "mengshi. <meng19850812@gmail.com>")]
+#[clap(version = "1.0", author = "Meng S. <meng19850812@gmail.com>")]
 struct Opts {
     /// Some input. it's required to be used
     input: String,
@@ -21,9 +21,9 @@ struct Opts {
 
 #[derive(Parser)]
 enum SubCommand {
-    #[clap(version = "1.3", author = "mengshi. <meng19850812@gmail.com>")]
+    #[clap(version = "1.3", author = "Meng S. <meng19850812@gmail.com>")]
     Put(Put),
-    #[clap(version = "1.3", author = "mengshi. <meng19850812@gmail.com>")]
+    #[clap(version = "1.3", author = "Meng S. <meng19850812@gmail.com>")]
     Range(Range)
 }
 
