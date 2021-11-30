@@ -1,10 +1,9 @@
-mod client;
-mod config;
+pub mod client;
+pub mod config;
 
 #[cfg(test)]
 mod tests {
-    use crate::config::Config;
-    use crate::client::{Client};
+    use super::*;
 
     macro_rules! aw {
         ($e:expr) => {
@@ -13,12 +12,13 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn put_and_range_works() {
         aw!(async {
-            let conf = Config {
+            let conf = config::Config {
                 host: "http://127.0.0.1:8519",
             };
-            let mut c = Client::new(&conf);
+            let mut c = client::Client::new(&conf);
             let key = String::from("bar");
             let val = String::from("foo");
             c.put(key.clone().into_bytes(), val.clone().into_bytes())
