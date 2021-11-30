@@ -3,9 +3,7 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new() -> Config{
-        Config{
-            host: ""
-        }
+    pub fn new() -> Config {
+        Config { host: "" }
     }
 }

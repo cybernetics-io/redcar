@@ -24,21 +24,21 @@ enum SubCommand {
     #[clap(version = "1.3", author = "Meng S. <meng19850812@gmail.com>")]
     Put(Put),
     #[clap(version = "1.3", author = "Meng S. <meng19850812@gmail.com>")]
-    Range(Range)
+    Range(Range),
 }
 
 /// Put key-value data to redcar server, example: "foo bar"
 #[derive(Parser)]
 struct Put {
     #[clap(short)]
-    debug: bool
+    debug: bool,
 }
 
 /// Get value by key from redcar server, example: "foo"
 #[derive(Parser)]
 struct Range {
     #[clap(short)]
-    debug: bool
+    debug: bool,
 }
 
 fn string_to_static_str(s: String) -> &'static str {
@@ -49,7 +49,9 @@ fn string_to_static_str(s: String) -> &'static str {
 async fn main() {
     let opts: Opts = Opts::parse();
 
-    let mut client = Client::new(&Config{ host: string_to_static_str(opts.host) });
+    let mut client = Client::new(&Config {
+        host: string_to_static_str(opts.host),
+    });
 
     match opts.verbose {
         0 => println!("No verbose info"),
@@ -61,8 +63,10 @@ async fn main() {
     match opts.sub_cmd {
         SubCommand::Put(s) => {
             let pair = opts.input.split(" ");
-            let kv:Vec<&str> = pair.collect();
-            client.put(Vec::from(kv[0].as_bytes()),Vec::from(kv[1].as_bytes())).await;
+            let kv: Vec<&str> = pair.collect();
+            client
+                .put(Vec::from(kv[0].as_bytes()), Vec::from(kv[1].as_bytes()))
+                .await;
             if s.debug {
                 println!("OK");
             }
