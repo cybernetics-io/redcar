@@ -1,7 +1,8 @@
 [workspace]
 members = [
-    "client",
+    "cmd/redcar-ctl",
     "cmd/redcar-server",
+    "client",
     "daemon",
     "proto",
     "package/index",

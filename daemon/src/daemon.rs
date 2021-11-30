@@ -20,6 +20,8 @@ use crate::config::Config;
 use crate::service::Service;
 use crate::os;
 
+const BACKLOG: u32 = 1024;
+
 pub struct Daemon {
     config: Config,
     home: String,
@@ -58,7 +60,7 @@ impl Daemon {
                 os::thread_affinity(&[i]);
                 let tid = thread::current().id();
                 let r = Builder::new_current_thread().enable_all().build().unwrap();
-                r.block_on(start_server(i, host.as_str(), svc, 1024));
+                r.block_on(server(i, host.as_str(), svc, BACKLOG));
             });
         }
     }
@@ -75,7 +77,7 @@ impl Daemon {
     }
 }
 
-async fn start_server(num: usize, host: &str, service: Service, backlog: u32) {
+async fn server(num: usize, host: &str, service: Service, backlog: u32) {
     println!("listen on: {:?}", host);
     let addr = host.parse().unwrap();
     let socket = TcpSocket::new_v4().unwrap();

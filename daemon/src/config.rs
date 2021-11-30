@@ -1,4 +1,4 @@
-// Copyright 2021 redcar Project Authors. Licensed under Apache-2.0.
+// Copyright 2021 Redcar Project Authors. Licensed under Apache-2.0.
 
 use std::path::PathBuf;
 use structopt::StructOpt;
@@ -32,7 +32,7 @@ pub struct Opt {
     #[structopt(short, long, default_value = "127.0.0.1:8519")]
     addr: String,
 
-    /// Set host
+    /// Set threads
     #[structopt(short, long, default_value = "4")]
     thread_number: usize,
 
