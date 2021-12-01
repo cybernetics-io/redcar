@@ -3,6 +3,7 @@ syntax = "proto3";
 package service;
 
 import "txn/type.proto";
+import "txn/cloudevents.proto";
 
 service KV {
   rpc Put(PutRequest) returns (PutResponse) {}
