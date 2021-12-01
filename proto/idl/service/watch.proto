@@ -3,6 +3,8 @@ syntax = "proto3";
 package service;
 
 import "txn/type.proto";
+import "txn/cloudevents.proto";
+
 
 service Watch {
   rpc Watch(WatchRequest) returns (stream WatchResponse) {}

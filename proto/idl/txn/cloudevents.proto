@@ -8,7 +8,8 @@
 
 syntax = "proto3";
 
-package io.cloudevents.v1;
+// io.cloudevents.v1
+package txn;
 
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
