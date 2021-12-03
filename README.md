@@ -1,11 +1,18 @@
 # Redcar 
+
 [![Crates.io][crates-badge]][crates-url]
-[![Build Status](https://github.com/redcar-io/redcar/actions/workflows/redcar.yml/badge.svg)](https://github.com/redcar-io/redcar/actions)
-[![DockerImage Build Status](https://github.com/redcar-io/redcar/actions/workflows/docker-image.yml/badge.svg)](https://github.com/redcar-io/redcar/actions)
-[![license](https://img.shields.io/badge/license-Apache2-orange.svg?style=flat)](https://github.com/redcar-io/redcar/main/LICENSE)
+[![Build Status][build-badge]][build-url]
+[![DockerImage Build Status][docker-ci-badge]][docker-ci-url]
+[![license][license-badge]][license-url]
 
 [crates-badge]: https://img.shields.io/crates/v/redcar.svg
 [crates-url]: https://crates.io/crates/redcar
+[build-badge]: https://github.com/redcar-io/redcar/actions/workflows/redcar.yml/badge.svg
+[build-url]: https://github.com/redcar-io/redcar/actions
+[docker-ci-badge]: https://github.com/redcar-io/redcar/actions/workflows/docker-image.yml/badge.svg
+[docker-ci-url]: https://github.com/redcar-io/redcar/actions
+[license-badge]: https://img.shields.io/badge/license-Apache2-orange.svg?style=flat
+[license-url]: https://github.com/redcar-io/redcar/main/LICENSE
 [cloudevents_io]:https://cloudevents.io
 [serverless_wg]:https://github.com/cncf/wg-serverless
 
