@@ -37,15 +37,17 @@ A real-time event-oriented database, inspired by the [cloudevents][cloudevents_i
 
 ## Overview
 
-The event-driven computing system architecture has become the main governance solution and technological 
-evolution direction of various cloud vendors and cloud native technology systems. To this end, we initiated 
-the redcar project. The vision is to explore and improve cloud event standards together with cloud native.
-Our goal is to achieve an event-driven engine that focuses on:
+Event-driven computing system architecture has become the main governance solution and technology evolution 
+direction of various cloud vendors and cloud-native technology systems. To this end we initiated the `Redcar`
+project, focusing on:
 
 * Event cast, including multiple modes such as unicast, multicast, multicast and broadcast.
 * Exchange, :
 * Replay, :
 * Persistence, :
+
+The vision is to explore and improve cloud event standards together with cloud native. Our goal is to achieve 
+an event-driven engine.
 
 ## Install
 
