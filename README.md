@@ -42,10 +42,10 @@ evolution direction of various cloud vendors and cloud native technology systems
 the redcar project. The vision is to explore and improve cloud event standards together with cloud native.
 Our goal is to achieve an event-driven engine that focuses on:
 
-* **Playback**:
-* **Exchange**:
-* **Replay**:
-* **Persistence**:
+* Event cast, including multiple modes such as unicast, multicast, multicast and broadcast.
+* Exchange, :
+* Replay, :
+* Persistence, :
 
 ## Install
 
