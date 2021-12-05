@@ -19,10 +19,10 @@
 A real-time event-oriented database, inspired by the [cloudevents][cloudevents_io] of the `CNCF's` 
 [serverless working group][serverless_wg]. It is:
 
-**Universal**:
-**Fast**:
-**Reliable**:
-**Secure**:
+* **Universal**:
+* **Fast**:
+* **Reliable**:
+* **Secure**:
 
 ## Table of Contents
 
