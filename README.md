@@ -41,9 +41,9 @@ direction of various cloud vendors and cloud-native technology systems. To this 
 project, focusing on:
 
 * Event cast, including multiple modes such as unicast, multicast, multicast and broadcast.
-* Exchange, :
-* Replay, :
-* Persistence, :
+* Exchange, provide routing capabilities between producers and consumers through the `event bus`
+* Persistence, the ability to record and monitor the entire life cycle of events
+* Replay, provides the ability to repeat historical events based on the persistent storage of events
 
 The vision is to explore and improve cloud event standards together with cloud native. Our goal is to achieve 
 an event-driven engine.
