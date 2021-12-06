@@ -28,11 +28,11 @@ A real-time event-oriented database, inspired by the [cloudevents][cloudevents_i
 
 - [Overview](#overview)
 - [Install](#install)
+  - [Building](#building)
 - [Usage](#usage)
 - [Clients](#clients)
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
-
 
 ## Overview
 
