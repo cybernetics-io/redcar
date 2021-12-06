@@ -19,10 +19,10 @@
 A real-time event-oriented database, inspired by the [cloudevents][cloudevents_io] of the `CNCF's` 
 [serverless working group][serverless_wg]. It is:
 
-* **Universal**:
-* **Fast**:
-* **Reliable**:
-* **Secure**:
+* **Universal**: The front end uses gRPC to provide services.
+* **Fast**: benchmarked 15000s of writes/s per instance and 20000 of reads/s.
+* **Reliable**: High-performance memory storage engine and persistent data warehouse.
+* **Secure**: optional SSL client cert authentication.
 
 ## Table of Contents
 
@@ -41,9 +41,9 @@ direction of various cloud vendors and cloud-native technology systems. To this 
 project, focusing on:
 
 * Event cast, including multiple modes such as unicast, multicast, multicast and broadcast.
-* Exchange, provide routing capabilities between producers and consumers through the `event bus`
-* Persistence, the ability to record and monitor the entire life cycle of events
-* Replay, provides the ability to repeat historical events based on the persistent storage of events
+* Exchange, provide routing capabilities between producers and consumers through the `event bus`.
+* Persistence, the ability to record and monitor the entire life cycle of events.
+* Replay, provides the ability to repeat historical events based on the persistent storage of events.
 
 The vision is to explore and improve cloud event standards together with cloud native. Our goal is to achieve 
 an event-driven engine.
