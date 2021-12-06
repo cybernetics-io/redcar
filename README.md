@@ -19,9 +19,9 @@
 A real-time event-oriented database, inspired by the [cloudevents][cloudevents_io] of the `CNCF's` 
 [serverless working group][serverless_wg]. It is:
 
-* **Universal**: The front end uses gRPC to provide services.
+* **Universal**: the front end uses gRPC to provide services.
 * **Fast**: benchmarked 15000s of writes/s per instance and 20000 of reads/s.
-* **Reliable**: High-performance memory storage engine and persistent data warehouse.
+* **Reliable**: high-performance memory storage engine and persistent back-end data warehouse.
 * **Secure**: optional SSL client cert authentication.
 
 ## Table of Contents
