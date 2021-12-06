@@ -29,8 +29,7 @@ A real-time event-oriented database, inspired by the [cloudevents][cloudevents_i
 - [Overview](#overview)
 - [Install](#install)
 - [Usage](#usage)
-    - [Generator](#generator)
-- [Example](#example)
+- [Clients](#clients)
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
 
