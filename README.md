@@ -88,13 +88,14 @@ $ ./bin/redcar-ctl -e http://127.0.0.1:8519 "foo bar" put
 $ ./bin/redcar-ctl -e http://127.0.0.1:8519 "foo" range
 ```
 
-### Generator
+## Clients
 
-To use the generator, look at . There is a global executable to run the generator in that package, aliased as .
+These are the clients for Redcar:
 
-## Example
+- [Go](https://github.com/redcar-io/client-go) (The most stable and widely used)
+- [Rust](https://github.com/redcar-io/redcar/client)
 
-To see how the specification has been applied, see the [example](example/).
+If you want to try the Go client, see [Go Client](https://github.com/redcar-io/client-go/).
 
 ## Maintainers
 
