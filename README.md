@@ -78,7 +78,7 @@ $ rustc --version
 First start a redcar machine:
 
 ```sh
-$ ./bin/redcar -o stdout
+$ ./bin/redcar -a 127.0.0.1:8519 -o stdout
 ```
 
 Next, let's set a single key, and then retrieve it:
