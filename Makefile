@@ -1,7 +1,7 @@
 name :=redcar
 
 BIN=/usr/local/bin
-CARGO=/Users/mtdp/.cargo/bin
+CARGO=
 
 debug ?=
 
