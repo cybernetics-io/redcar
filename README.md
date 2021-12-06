@@ -50,20 +50,35 @@ The vision is to explore and improve cloud event standards together with cloud n
 an event-driven engine.
 
 ## Install
+The latest release and setup instructions are available at [GitHub][github-release].
 
-This project uses . Go check them out if you don't have them locally installed.
+[github-release]: https://github.com/redcar-io/redcar/releases/
+
+### Building
+
+You can build redcar from source:
 
 ```sh
-$ npm install --global readme
+$ git clone https://github.com/redcar-io/redcar/
+$ cd redcar
+$ ./make
+$ ./make install
+```
+
+This will generate a binary called `./bin/redcar`.
+
+_NOTE_: you need rust 1.55+. Please check your installation with
+
+```
+$ rustc --version
 ```
 
 ## Usage
 
-This is only a documentation package. You can print out [spec.md](spec.md) to your console:
+First start a redcar machine:
 
 ```sh
-$ readme
-# Prints out the readme spec
+$ ./bin/redcar -o stdout
 ```
 
 ### Generator
@@ -83,8 +98,3 @@ To see how the specification has been applied, see the [example](example/).
 Feel free to dive in! [Open an issue](https://github.com/redcar-io/redcar/issues/new) or submit PRs.
 
 Standard Readme follows the [Contributor Covenant](http://contributor-covenant.org/version/1/3/0/) Code of Conduct.
-
-### Contributors
-
-This project exists thanks to all the people who contribute.
-<a href="https://github.com/redcar-io/redcar/graphs/contributors"><img src="https://opencollective.com/redcar/contributors.svg?width=890&button=false" /></a>
