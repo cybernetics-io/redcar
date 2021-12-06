@@ -81,6 +81,13 @@ First start a redcar machine:
 $ ./bin/redcar -o stdout
 ```
 
+Next, let's set a single key, and then retrieve it:
+
+```sh
+$ ./bin/redcar-ctl -e http://127.0.0.1:8519 "foo bar" put 
+$ ./bin/redcar-ctl -e http://127.0.0.1:8519 "foo" range
+```
+
 ### Generator
 
 To use the generator, look at . There is a global executable to run the generator in that package, aliased as .

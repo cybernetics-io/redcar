@@ -14,7 +14,7 @@ struct Opts {
     verbose: i32,
     /// A host name for redcar server
     #[clap(short, long, default_value = "http://127.0.0.1:8519")]
-    host: String,
+    endpoint: String,
     #[clap(subcommand)]
     sub_cmd: SubCommand,
 }
@@ -50,7 +50,7 @@ async fn main() {
     let opts: Opts = Opts::parse();
 
     let mut client = Client::new(&Config {
-        host: string_to_static_str(opts.host),
+        host: string_to_static_str(opts.endpoint),
     });
 
     match opts.verbose {
