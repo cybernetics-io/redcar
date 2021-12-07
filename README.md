@@ -45,6 +45,8 @@ project, focusing on:
 * Persistence, the ability to record and monitor the entire life cycle of events.
 * Replay, provides the ability to repeat historical events based on the persistent storage of events.
 
+> Events are everywhere, yet event publishers tend to describe events differently.
+
 The vision is to explore and improve cloud event standards together with cloud native. Our goal is to achieve 
 an event-driven engine.
 
