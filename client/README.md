@@ -1,6 +1,4 @@
-# redcar-go
-[![Build Status](https://github.com/redcar-io/client-go/workflows/Go/badge.svg)](https://github.com/redcar-io/client-go/actions)
-[![license](https://img.shields.io/badge/license-Apache2-orange.svg?style=flat)](https://github.com/redcar-io/client-go/main/LICENSE)
+# Redcar rust client
 
 A rust client for Redcar
 
