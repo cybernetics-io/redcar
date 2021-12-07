@@ -92,7 +92,7 @@ $ ./bin/redcar-ctl -e http://127.0.0.1:8519 "foo" range
 These are the clients for Redcar:
 
 - [Go](https://github.com/redcar-io/client-go) (The most stable and widely used)
-- [Rust](https://github.com/redcar-io/redcar/client)
+- [Rust](https://github.com/redcar-io/redcar/tree/master/client)
 
 If you want to try the Go client, see [Go Client](https://github.com/redcar-io/client-go/).
 
