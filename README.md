@@ -13,11 +13,11 @@
 [docker-ci-url]: https://github.com/redcar-io/redcar/actions
 [license-badge]: https://img.shields.io/badge/license-Apache2-orange.svg?style=flat
 [license-url]: https://github.com/redcar-io/redcar/main/LICENSE
-[cloudevents_io]:https://cloudevents.io
-[serverless_wg]:https://github.com/cncf/wg-serverless
+[cloudevents_io]: https://cloudevents.io
+[serverless_wg]: https://github.com/cncf/wg-serverless
+[data-hub]: https://en.wikipedia.org/wiki/Data_hub
 
-A real-time event-oriented datahub, inspired by the [cloudevents][cloudevents_io] of the `CNCF's` 
-[serverless working group][serverless_wg]. It is:
+A real-time event-oriented data-hub, inspired by the [data hub][data-hub]. It is:
 
 * **Universal**: the front end uses gRPC to provide services.
 * **Fast**: benchmarked 15000s of writes/s per instance and 20000s of reads/s.
