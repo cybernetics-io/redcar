@@ -24,7 +24,7 @@ A real-time event-oriented datahub, inspired by the [cloudevents][cloudevents_io
 * **Reliable**: high-performance memory storage engine and persistent back-end data warehouse.
 * **Secure**: optional SSL client cert authentication.
 
-## Table of Contents
+## Contents
 
 - [Overview](#overview)
 - [Install](#install)
@@ -104,4 +104,4 @@ If you want to try the Go client, see [Go Client](https://github.com/redcar-io/c
 
 Feel free to dive in! [Open an issue](https://github.com/redcar-io/redcar/issues/new) or submit PRs.
 
-Standard Readme follows the [Contributor Covenant](http://contributor-covenant.org/version/1/3/0/) Code of Conduct.
+Redcar follows the [Contributor Covenant](http://contributor-covenant.org/version/1/3/0/) Code of Conduct.
