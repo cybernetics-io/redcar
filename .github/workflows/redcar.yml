@@ -19,10 +19,10 @@ jobs:
             os: ubuntu-latest
             rust: "stable"
             features: "full"
-          - build: windows
-            os: windows-latest
-            rust: "stable"
-            features: "full"
+          #- build: windows
+          #  os: windows-latest
+          #  rust: "stable"
+          #  features: "full"
           - build: mac
             os: macos-latest
             rust: "stable"
