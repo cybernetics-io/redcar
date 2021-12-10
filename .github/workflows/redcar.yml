@@ -13,7 +13,7 @@ jobs:
   build:
     strategy:
       matrix:
-        build: [ linux, windows, mac, minimal, default ]
+        build: [ linux, mac, minimal, default ]
         include:
           - build: linux
             os: ubuntu-latest
@@ -46,12 +46,5 @@ jobs:
       - uses: Swatinem/rust-cache@v1
       - name: Build
         run: make build
-      #- uses: actions/checkout@v2
-      #- name: Build
-      #  run: cargo build --verbose
-      #  with:
-      #    toolchain: ${{ matrix.rust }}
-      #    profile: minimal
-      #    override: true
       - name: Run tests
         run: cargo test --verbose
