@@ -34,7 +34,6 @@ jobs:
 
     continue-on-error: ${{ matrix.rust != 'stable' }}
     runs-on: ${{ matrix.os }}
-    #runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
