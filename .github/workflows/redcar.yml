@@ -11,12 +11,41 @@ env:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        build: [ linux, windows, mac, minimal, default ]
+        include:
+          - build: linux
+            os: ubuntu-latest
+            rust: "stable"
+            features: "full"
+          - build: windows
+            os: windows-latest
+            rust: "stable"
+            features: "full"
+          - build: mac
+            os: macos-latest
+            rust: "stable"
+            features: "full"
+          - build: minimal
+            os: ubuntu-latest
+            rust: "stable"
+            features: "minimal"
+          - build: default
+            os: ubuntu-latest
+            rust: "stable"
+            features: "default"
 
-    runs-on: ubuntu-latest
-
+    continue-on-error: ${{ matrix.rust != 'stable' }}
+    runs-on: ${{ matrix.os }}
+    #runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Build
       run: cargo build --verbose
+      with:
+        toolchain: ${{ matrix.rust }}
+        profile: minimal
+        override: true
     - name: Run tests
       run: cargo test --verbose
