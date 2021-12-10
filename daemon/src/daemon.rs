@@ -81,7 +81,9 @@ async fn server(num: usize, host: &str, service: Service, backlog: u32) {
     println!("listen on: {:?}", host);
     let addr = host.parse().unwrap();
     let socket = TcpSocket::new_v4().unwrap();
-    if !cfg!(target_os = "windows") {
+    if cfg!(target_os = "windows") {
+        socket.set_reuseaddr(true).unwrap();
+    } else {
         socket.set_reuseport(true).unwrap();
     }
     socket.bind(addr);
