@@ -20,7 +20,7 @@ endif
 CMDs = redcar-server redcar-ctl
 
 build:
-	$(CARGO)/cargo build $(release)
+	$(CARGO)cargo build $(release)
 
 .PHONY: $(CMDs)
 
