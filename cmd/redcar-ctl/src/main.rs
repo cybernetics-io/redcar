@@ -1,4 +1,4 @@
-use clap::{AppSettings, Parser};
+use clap::Parser;
 use client::client::Client;
 use client::config::Config;
 
