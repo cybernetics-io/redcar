@@ -8,7 +8,7 @@ asynchronous capabilities between services. Hope to improve the energy efficienc
 of modern clouds through the event-driven service model.
 
 Redcar uses gRPC to provide services, which is user-friendly and has low access 
-costs (currently encapsulates Rust and Go clients). With high-performance **event 
+costs (currently encapsulates `Rust` and `Go` clients). With high-performance **event 
 exchange** capabilities, it provides point-to-point event awareness based on the 
 traditional event-driven model. Provides transaction processing capabilities and 
 data persistence capabilities for streaming events. It adopts a design architecture 
@@ -28,6 +28,7 @@ well, and its performance is good enough to give us a lot in service asynchronou
 transformation and technology evolution surprise" said Miguel, head of infrastructure 
 at Tick-io.
 
+##
 ### FAQ
 
 context
