@@ -68,7 +68,7 @@ $ ./make
 $ ./make install
 ```
 
-This will generate a binary called `./bin/redcar`.
+This will generate a binary called `/usr/local/bin/redcar` and `redcar-ctl`.
 
 _NOTE_: you need rust 1.55+. Please check your installation with
 
@@ -81,14 +81,14 @@ $ rustc --version
 First start a redcar machine:
 
 ```sh
-$ ./bin/redcar -a 127.0.0.1:8519 -o stdout
+$ redcar -a 127.0.0.1:8519 -o stdout
 ```
 
 Next, let's set a single key, and then retrieve it:
 
 ```sh
-$ ./bin/redcar-ctl -e http://127.0.0.1:8519 "foo bar" put 
-$ ./bin/redcar-ctl -e http://127.0.0.1:8519 "foo" range
+$ redcar-ctl -e http://127.0.0.1:8519 "foo bar" put 
+$ redcar-ctl -e http://127.0.0.1:8519 "foo" range
 ```
 
 ## Clients
