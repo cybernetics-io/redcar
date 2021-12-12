@@ -26,7 +26,7 @@ and use the event-driven service model to improve the energy efficiency of moder
 * **Reliable**: high-performance memory storage engine and persistent back-end data warehouse.
 * **Secure**: optional SSL client cert authentication.
 
-If you want a more comprehensive understanding of Redcar, please go to [PRFAQ][pr-faq].
+> If you want a more comprehensive understanding of Redcar, please go to [PRFAQ][pr-faq].
 
 ## Contents
 
@@ -49,8 +49,6 @@ project, focusing on:
 * Persistence, the ability to record and monitor the entire life cycle of events.
 * Replay, provides the ability to repeat historical events based on the persistent storage of events.
 
-The vision is to explore and improve cloud event standards together with cloud native. Our goal is to achieve 
-an event-hub.
 
 ## Install
 The latest release and setup instructions are available at [GitHub][github-release].
