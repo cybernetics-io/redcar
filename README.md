@@ -17,12 +17,14 @@
 [serverless_wg]: https://github.com/cncf/wg-serverless
 [data-hub]: https://en.wikipedia.org/wiki/Data_hub
 
-A real-time event-oriented data-hub, inspired by the [data hub][data-hub]. It is:
+A real-time event-oriented data-hub, help users realize the asynchronous capability between services, 
+and use the event-driven service model to improve the energy efficiency of modern clouds. It is:
 
 * **Universal**: the front end uses gRPC to provide services.
 * **Fast**: benchmarked 15000s of writes/s per instance and 20000s of reads/s.
 * **Reliable**: high-performance memory storage engine and persistent back-end data warehouse.
 * **Secure**: optional SSL client cert authentication.
+
 
 ## Contents
 
