@@ -32,21 +32,21 @@ at Tick-io.
 ### FAQ
 
 Q: Who are the users of Redcar?
-A:
+A: 
 
 Q: Which scenarios are suitable for Redcar?
 A:
 
-Q: What are the competing products in the industry？
+Q: What are the competing products in the industry?
 A:
 
 Q: What is the difference between Redcar and message queue?
 A:
 
-Q: How to ensure the reliability of events？
+Q: How to ensure the reliability of events?
 A:
 
-Q: Which access methods are currently supported？
+Q: Which access methods are currently supported?
 A: 
 
 Q: 
