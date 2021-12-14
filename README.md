@@ -1,9 +1,4 @@
-# Redcar 
-
-[![Crates.io][crates-badge]][crates-url]
-[![Build Status][build-badge]][build-url]
-[![DockerImage Build Status][docker-ci-badge]][docker-ci-url]
-[![license][license-badge]][license-url]
+# Redcar [![Crates.io][crates-badge]][crates-url] [![Build Status][build-badge]][build-url] [![DockerImage Build Status][docker-ci-badge]][docker-ci-url] [![license][license-badge]][license-url]
 
 [crates-badge]: https://img.shields.io/crates/v/redcar.svg
 [crates-url]: https://crates.io/crates/redcar
