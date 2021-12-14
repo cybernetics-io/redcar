@@ -26,27 +26,46 @@ system and notify me when there is an action trigger on the message, so that my
 attention can focus on the current business logic. Redcar has helped us do this 
 well, and its performance is good enough to give us a lot in service asynchronous 
 transformation and technology evolution surprise" said Miguel, head of infrastructure 
-at Tick-io.
+at Tick co., ltd.
 
 ##
 ### FAQ
+###
+> Who are the users of Redcar?
 
-Q: Who are the users of Redcar?
-A: 
+* Redcar For R&D engineers, it provides users with the asynchronous capability between 
+services and continuously improves the overall performance of the application. If you 
+have such a demand, you can use this product as a solution.
+###
 
-Q: Which scenarios are suitable for Redcar?
-A:
+###
+> Which scenarios are suitable for Redcar?
 
-Q: What are the competing products in the industry?
-A:
+* Redcar can be used in cross-cloud event routing, IoT device monitoring, service discovery 
+and other related fields.
+###
 
-Q: What is the difference between Redcar and message queue?
-A:
+###
+> What are the competing products in the industry?
 
-Q: How to ensure the reliability of events?
-A:
+* Amazon EventBridge Event Bus, Azure Event Hubs and Google Cloud Pub/Sub.
+###
 
-Q: Which access methods are currently supported?
-A: 
+###
+> What is the difference between Redcar and Message Queue?
 
-Q: 
+* Message queues deal with static messages, while Redcar is geared towards dynamic events. 
+This is the essential difference between them. So their application scenarios are different. 
+###
+
+###
+> How to ensure the reliability of events?
+
+* Redcar possesses transaction processing and persistence capabilities.
+###
+
+###
+> Which access methods are currently supported?
+
+* Redcar use gPRC to open interfaces to users and support multiple development languages to access.
+###
