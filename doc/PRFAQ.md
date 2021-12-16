@@ -41,7 +41,7 @@ have such a demand, you can use this product as a solution.
 ###
 > Which scenarios are suitable for Redcar?
 
-* Redcar can be used in cross-cloud event routing, IoT device monitoring, service discovery 
+* Redcar can be used in cross-cloud event routing, IoT device monitoring,  
 and other related fields.
 ###
 
