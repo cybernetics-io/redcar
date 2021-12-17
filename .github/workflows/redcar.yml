@@ -47,4 +47,4 @@ jobs:
       - name: Build
         run: make build
       - name: Run tests
-        run: cargo test --verbose
+        run: cargo test --workspace --verbose
