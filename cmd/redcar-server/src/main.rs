@@ -1,8 +1,8 @@
-// Copyright 2021 redcar Project Authors. Licensed under Apache-2.0.
+// Copyright 2021 Redcar Project Authors. Licensed under Apache-2.0.
 
-use daemon::config::Config;
-use daemon::daemon::Daemon;
-use daemon::os;
+use redcar::config::Config;
+use redcar::daemon::Daemon;
+use redcar::os;
 
 fn main() {
     Daemon::new(Config::new())

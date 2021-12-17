@@ -1,15 +1,51 @@
+[package]
+name = "redcar"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "redcar"
+
+[dependencies]
+proto = { path = "proto", version = "0.1.0" }
+utils = { path = "package/utils", version = "0.1.0" }
+backend = { path = "package/backend", version = "0.1.0" }
+index = { path="package/index", version = "0.1.0" }
+trigger = { path="package/trigger", version = "0.1.0" }
+protobuf = "~2"
+structopt = "0.3"
+libc = "0.2"
+nix = "0.11"
+tonic = "0.5"
+prost = "0.8"
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"]}
+tokio-stream = {version = "0.1", features = ["net"]}
+futures = { version = "0.3", default-features = false, features = ["alloc"] }
+async-stream = "0.3.2"
+futures-util = "0.3.17"
+
+[build-dependencies]
+tonic-build = "0.5"
+
+[target.'cfg(unix)'.dependencies]
+signal = "0.6"
+
+[target.'cfg(any(linux, windows))'.dependencies]
+affinity = "0.1.2"
+
 [workspace]
+resolver = "2"
 members = [
     "cmd/redcar-ctl",
     "cmd/redcar-server",
     "client",
-    "daemon",
     "proto",
     "package/index",
     "package/backend",
     "package/trigger",
-    "package/utils"
+    "package/utils",
 ]
+default-members = ["cmd/redcar-server", "cmd/redcar-ctl"]
 
 [profile.dev]
 opt-level = 0

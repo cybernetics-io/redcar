@@ -63,6 +63,22 @@ impl Config {
         }
     }
 
+    pub fn default() -> Config {
+        Config {
+            opt: Opt{
+                debug: false,
+                verbose: 0,
+                level: vec![],
+                home: "/usr/local/redcar".to_string(),
+                addr: "127.0.0.1:8519".to_string(),
+                thread_number: 4,
+                output: Default::default(),
+                nb_cars: None,
+                files: vec![]
+            }
+        }
+    }
+
     pub fn get_host(&self) -> String {
         self.opt.addr.clone()
     }

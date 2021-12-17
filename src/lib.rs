@@ -1,4 +1,4 @@
-// Copyright 2021 redcar Project Authors. Licensed under Apache-2.0.
+// Copyright 2021 Redcar Project Authors. Licensed under Apache-2.0.
 
 pub mod config;
 pub mod daemon;
