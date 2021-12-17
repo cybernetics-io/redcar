@@ -28,6 +28,9 @@ well, and its performance is good enough to give us a lot in service asynchronou
 transformation and technology evolution surprise" said Miguel, head of infrastructure 
 at Tick co., ltd.
 
+Let’s use Redcar now. Our products are still evolving. Please tell us if you have 
+any suggestions.
+
 ##
 ### FAQ
 ###
