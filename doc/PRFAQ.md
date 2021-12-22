@@ -1,3 +1,4 @@
+[redcar]: https://github.com/redcar-io/redcar
 ## Press Release - Redcar
 
 **Redcar: A real-time event-oriented data-hub**
@@ -27,6 +28,9 @@ attention can focus on the current business logic. Redcar has helped us do this
 well, and its performance is good enough to give us a lot in service asynchronous 
 transformation and technology evolution surprise" said Miguel, head of infrastructure 
 at Tick co., ltd.
+
+Let’s use [Redcar][redcar] now. Our products are still evolving. Please tell us if you have 
+any suggestions.
 
 ##
 ### FAQ
