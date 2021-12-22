@@ -13,7 +13,7 @@
 [data-hub]: https://en.wikipedia.org/wiki/Data_hub
 [pr-faq]: https://github.com/redcar-io/redcar/blob/master/doc/PRFAQ.md
 
-A real-time event-oriented data-hub, help users realize the asynchronous capability between services, 
+A real-time event-oriented data-hub, help users realize the asynchronous capability between **functions**, 
 and use the event-driven service model to improve the energy efficiency of modern clouds. It is:
 
 * **Fast**: benchmarked 15000s of writes/s per instance and 20000s of reads/s.
