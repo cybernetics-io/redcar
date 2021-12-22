@@ -50,9 +50,9 @@ and other related fields.
 ###
 
 ###
-> What are the competing products in the industry?
+> What are the similar products in the industry?
 
-* Amazon EventBridge Event Bus, Azure Event Hubs and Google Cloud Pub/Sub.
+* There are Amazon EventBridge/EventBus, Azure Event Hubs, Google Cloud Pub/Sub and open source product Apache EventMesh.
 ###
 
 ###
