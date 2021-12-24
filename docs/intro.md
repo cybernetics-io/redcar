@@ -1,4 +1,4 @@
-# A real-time event-oriented data-hub
+# Redcar
 In the past ten years, relying on the technical dividend of hardware performance
 brought by Moore's law, we can focus on the construction of software products and
 user experience, which has made great progress in software applications. A famous
