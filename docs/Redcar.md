@@ -11,3 +11,5 @@ software have attracted more and more attention, and this technological revoluti
 bring us a new technical architecture upgrade and extreme performance experience, and our
 product **Redcar is a connector from desktop to cloud and edge, The asynchronous collaboration
 between functions on modern cloud is solved by event driven core model**.
+
+With the gradual maturity of a number of new technologies such as wasm / Wasi, the performance of the web side is getting better and better, and it is possible for the desktop to connect to the cloud / edge. On the surface, it reduces the cost of the cloud, but actually puts forward more requirements for the cloud or edge, both at the performance and architecture levels. The evolution of server-side technology driven by the upgrading of desktop software architecture is in progress.
