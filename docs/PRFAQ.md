@@ -4,9 +4,10 @@
 **Redcar: A real-time event-oriented data-hub**
 
 On December 11, 2021, Redcar-io is pleased to announce that we have released 
-a real-time event-oriented data-hub product. The goal is to help users achieve 
-asynchronous capabilities between services. Hope to improve the energy efficiency 
-of modern clouds through the event-driven service model.
+a real-time event-oriented data-hub product. The goal is to provide a high-performance 
+event hosting solution to help users solve the asynchronous problem between 
+services (or functions). Hope to improve the energy efficiency of modern clouds 
+through the event-driven architecture(EDA) model.
 
 Redcar uses gRPC to provide services, which is user-friendly and has low access 
 costs (currently encapsulates `Rust` and `Go` clients). With high-performance **event 
