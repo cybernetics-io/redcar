@@ -13,8 +13,9 @@
 [data-hub]: https://en.wikipedia.org/wiki/Data_hub
 [pr-faq]: https://github.com/redcar-io/redcar/blob/master/doc/PRFAQ.md
 
-A real-time event-oriented data-hub, help users realize the asynchronous capability between **functions**, 
-and use the event-driven application model to improve the energy efficiency of modern clouds. It is:
+A real-time event-oriented data-hub. It has the capabilities of event triggering, aggregation, routing, and storage. 
+Provide a high-performance event hosting solution to help users solve the asynchronous problem between services (or functions). 
+and use the event-driven architecture(EDA) model to improve the energy efficiency of modern clouds. It is:
 
 * **Fast**: benchmarked 15000s of writes/s per instance and 20000s of reads/s.
 * **Universal**: the front end uses gRPC to provide services.
