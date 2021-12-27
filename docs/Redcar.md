@@ -1,9 +1,10 @@
 # Redcar
+> Why should we optimize the performance at the software level? Even if we do nothing, 
+the performance of our software will double every 18 months.
+
 In the past ten years, relying on the technical dividend of hardware performance
 brought by Moore's law, we can focus on the construction of software products and
-user experience, which has made great progress in software applications. A famous
-CEO once said, why should we optimize the performance at the software level? Even
-if we do nothing, the performance of our software will double every 18 months. With
+user experience, which has made great progress in software applications. With
 the advent of the post Moore's law era, the performance improvement range of hardware
 has gradually shrunk, and there is no longer the advantage of the past. Therefore, in
 recent years, the infrastructure and programming tool chain represented by high-performance
