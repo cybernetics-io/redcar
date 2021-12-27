@@ -11,7 +11,7 @@
 [cloudevents_io]: https://cloudevents.io
 [serverless_wg]: https://github.com/cncf/wg-serverless
 [data-hub]: https://en.wikipedia.org/wiki/Data_hub
-[pr-faq]: https://github.com/redcar-io/redcar/blob/master/doc/PRFAQ.md
+[pr-faq]: https://github.com/redcar-io/redcar/blob/master/docs/PRFAQ.md
 
 A real-time event-oriented data-hub. It has the capabilities of event triggering, aggregation, routing, and storage. 
 Provide a high-performance event hosting solution to help users solve the asynchronous problem between services (or functions). 
