@@ -21,3 +21,7 @@ the cloud / edge. On the surface, it reduces the cost of the cloud, but actually
 more requirements for the cloud or edge, both at the performance and architecture levels. The 
 evolution of server-side technology driven by the upgrading of desktop software architecture 
 is in progress.
+
+## Overview
+
+![arch](https://github.com/redcar-io/redcar/blob/master/docs/figure/redcar.png)
