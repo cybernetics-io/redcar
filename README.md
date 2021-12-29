@@ -12,6 +12,7 @@
 [serverless_wg]: https://github.com/cncf/wg-serverless
 [data-hub]: https://en.wikipedia.org/wiki/Data_hub
 [pr-faq]: https://github.com/redcar-io/redcar/blob/master/docs/PRFAQ.md
+[redcar]: https://github.com/redcar-io/redcar/blob/master/docs/Redcar.md
 
 A real-time event-oriented data-hub. It has the capabilities of event triggering, aggregation, routing, and storage. 
 Provide a high-performance event hosting solution to help users solve the asynchronous problem between services (or functions). 
@@ -22,7 +23,7 @@ Use the event-driven architecture(EDA) model to improve the energy efficiency of
 * **Reliable**: high-performance memory storage engine and persistent back-end data warehouse.
 * **Secure**: optional SSL client cert authentication.
 
-> If you want a more comprehensive understanding of Redcar, please go to [PRFAQ][pr-faq].
+> If you want a more comprehensive understanding of Redcar, please go to [Redcar][redcar].
 
 ## Contents
 
