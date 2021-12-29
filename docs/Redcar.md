@@ -1,4 +1,5 @@
 # Redcar
+![arch](https://github.com/redcar-io/redcar/blob/master/docs/figure/redcar.png)
 > Why should we optimize the performance at the software level? Even if we do nothing, 
 the performance of our software will double every 18 months.
 
@@ -23,5 +24,3 @@ evolution of server-side technology driven by the upgrading of desktop software 
 is in progress.
 
 ## Overview
-
-![arch](https://github.com/redcar-io/redcar/blob/master/docs/figure/redcar.png)
