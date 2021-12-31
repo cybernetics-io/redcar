@@ -53,7 +53,7 @@ and other related fields.
 ###
 > What are the similar products in the industry?
 
-* There are Amazon EventBridge/EventBus, Azure Event Hubs, Google Cloud Pub/Sub and open source product Apache EventMesh.
+* There are Amazon EventBridge/EventBus, Azure Event Hubs, Google Cloud Eventarc and Apache EventMesh.
 ###
 
 ###
