@@ -139,7 +139,7 @@ impl Watch for WatchService {
             let wid = create.watch_id;
             while wrx.changed().await.is_ok() {
                 let event = Event {
-                    r#type: wrx.borrow().r#type,
+                    action: wrx.borrow().action,
                     kv: wrx.borrow().kv.clone(),
                 };
                 tx.send(Ok(WatchResponse {

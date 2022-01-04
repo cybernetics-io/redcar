@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package service;
+
+import "txn/type.proto";
+
+service Keepalive {
+  rpc Heartbeat(stream HeartbeatRequest) returns (stream txn.Message) {}
+  rpc Status(StatusRequest) returns (stream txn.Message) {}
+}
+
+message HeartbeatRequest {
+
+}
+
+message StatusRequest {
+
+}

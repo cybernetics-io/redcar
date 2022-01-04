@@ -42,7 +42,7 @@ impl Trigger {
             Some(node) => {
                 for action in node.lock().unwrap().iter() {
                     action.notify(Event {
-                        r#type: 0,
+                        action: 0,
                         kv: Option::from(kv.clone()),
                     })
                 }
@@ -63,7 +63,7 @@ impl Trigger {
 
     pub fn edge(&mut self, key: Vec<u8>) -> watch::Receiver<Event> {
         let (rx, tx) = watch::channel(Event {
-            r#type: 0,
+            action: 0,
             kv: None,
         });
         let a: Box<dyn Action + Send + Sync> = Box::new(Edge {

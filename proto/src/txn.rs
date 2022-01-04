@@ -1,7 +1,7 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Event {
-    #[prost(enumeration = "event::EventType", tag = "1")]
-    pub r#type: i32,
+    #[prost(enumeration = "event::EventAction", tag = "1")]
+    pub action: i32,
     #[prost(message, optional, tag = "2")]
     pub kv: ::core::option::Option<KeyValue>,
 }
@@ -9,7 +9,7 @@ pub struct Event {
 pub mod event {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
     #[repr(i32)]
-    pub enum EventType {
+    pub enum EventAction {
         Put = 0,
         Delete = 1,
     }
@@ -26,6 +26,22 @@ pub struct KeyValue {
     pub version: i64,
     #[prost(bytes = "vec", tag = "5")]
     pub value: ::prost::alloc::vec::Vec<u8>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Message {
+    #[prost(enumeration = "message::MessageType", tag = "1")]
+    pub r#type: i32,
+    #[prost(message, optional, tag = "2")]
+    pub kv: ::core::option::Option<KeyValue>,
+}
+/// Nested message and enum types in `Message`.
+pub mod message {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[repr(i32)]
+    pub enum MessageType {
+        Heartbeat = 0,
+        State = 1,
+    }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudEvent {

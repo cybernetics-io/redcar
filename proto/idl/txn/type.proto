@@ -3,11 +3,11 @@ syntax = "proto3";
 package txn;
 
 message Event {
-  enum EventType {
+  enum EventAction {
     PUT = 0;
     DELETE = 1;
   }
-  EventType type = 1;
+  EventAction action = 1;
   KeyValue kv = 2;
 }
 
@@ -17,4 +17,13 @@ message KeyValue {
   int64 mod_revision = 3;
   int64 version = 4;
   bytes value = 5;
+}
+
+message Message {
+  enum MessageType {
+    HEARTBEAT = 0;
+    STATE = 1;
+  }
+  MessageType type = 1;
+  KeyValue kv = 2;
 }
