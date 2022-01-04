@@ -43,6 +43,7 @@ members = [
     "package/index",
     "package/backend",
     "package/trigger",
+    "package/timewheel",
     "package/utils"
 ]
 default-members = ["cmd/redcar-server", "cmd/redcar-ctl"]
