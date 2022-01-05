@@ -28,7 +28,7 @@ futures-util = "0.3.17"
 tonic-build = { version = "0.5", features = ["transport"]}
 
 [target.'cfg(unix)'.dependencies]
-signal = "0.6"
+signal = "0.7"
 
 [target.'cfg(any(linux, windows))'.dependencies]
 affinity = "0.1.2"
