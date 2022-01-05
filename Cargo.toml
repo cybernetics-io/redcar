@@ -25,7 +25,7 @@ async-stream = "0.3.2"
 futures-util = "0.3.17"
 
 [build-dependencies]
-tonic-build = { version = "0.5", features = ["transport"]}
+tonic-build = { version = "0.6", features = ["transport"]}
 
 [target.'cfg(unix)'.dependencies]
 signal = "0.6"
