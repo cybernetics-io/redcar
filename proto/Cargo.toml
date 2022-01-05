@@ -12,7 +12,7 @@ path = "src/lib.rs"
 
 [dependencies]
 tonic = "0.5"
-prost = "0.8"
+prost = "0.9"
 prost-types = "0.8"
 tokio = { version = "1.0", features = ["macros", "rt-multi-thread"]}
 protobuf = "~2"
