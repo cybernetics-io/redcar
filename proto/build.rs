@@ -7,8 +7,7 @@ fn main() {
         .compile(
             &[
                 "idl/service/kv.proto",
-                "idl/service/watch.proto",
-                "idl/service/observe.proto",
+                "idl/service/event.proto",
                 "idl/service/keepalive.proto",
             ],
             &["idl"],

@@ -5,9 +5,9 @@ package service;
 import "txn/type.proto";
 import "txn/cloudevents.proto";
 
-
-service Watch {
+service Event {
   rpc Watch(WatchRequest) returns (stream WatchResponse) {}
+  rpc Observe(stream ObserveRequest) returns (stream ObserveResponse) {}
 }
 
 message WatchRequest {
@@ -33,6 +33,30 @@ message WatchCreate {
 
 message WatchResponse {
   int64 watch_id = 1;
+  bool created = 2;
+  bool canceled = 3;
+  string cancel_reason = 4;
+  repeated txn.Event events = 5;
+}
+
+message ObserveRequest {
+  oneof observe_type {
+    ObserveCreate create = 1;
+    ObserveCancel cancel = 2;
+  }
+}
+
+message ObserveCancel {
+  int64 observe_id = 1;
+}
+
+message ObserveCreate {
+  bytes key = 1;
+  int64 observe_id = 2;
+}
+
+message ObserveResponse {
+  int64 observe_id = 1;
   bool created = 2;
   bool canceled = 3;
   string cancel_reason = 4;

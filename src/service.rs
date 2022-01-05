@@ -2,11 +2,8 @@ use std::sync::Arc;
 use std::pin::Pin;
 
 use proto::service::kv_server::Kv;
-use proto::service::{
-    PutRequest, PutResponse, RangeRequest, RangeResponse, WatchCancel, WatchCreate, WatchRequest,
-    WatchResponse, ObserveCancel, ObserveCreate, ObserveRequest, ObserveResponse,
-};
-use proto::txn::{Event, KeyValue};
+use proto::service::{PutRequest, PutResponse, RangeRequest, RangeResponse, WatchCancel, WatchCreate, WatchRequest, WatchResponse, ObserveCancel, ObserveCreate, ObserveRequest, ObserveResponse, HeartbeatRequest, StatusRequest};
+use proto::txn::{KeyValue, Message};
 
 use async_stream;
 use futures::Stream;
@@ -31,8 +28,8 @@ use proto::service::observe_request::ObserveType;
 use proto::service::watch_request::WatchType;
 use backend::{Backend, DB, Type};
 use tokio::time::sleep;
-use proto::service::observe_server::Observe;
-use proto::service::watch_server::Watch;
+use proto::service::event_server::Event;
+use proto::service::keepalive_server::Keepalive;
 use trigger::{Action, Trigger};
 use trigger::Type as ActionType;
 use trigger::edge::Edge;
@@ -42,28 +39,27 @@ const CHANNEL_BUFFER_SIZE: usize = 512;
 
 type WatchResponseStream = ReceiverStream<Result<WatchResponse, Status>>;
 type ObserveResponseStream = ReceiverStream<Result<ObserveResponse, Status>>;
+type KeepaliveStream = ReceiverStream<Result<Message, Status>>;
 
 #[derive(Clone)]
 pub struct Service {
     pub kvs: KVService,
-    pub ws: WatchService,
-    pub os: ObserveService,
+    pub evs: EventService,
+    pub kas: KeepaliveService
 }
 
 impl Service {
     pub fn new(c: Config) -> Result<Service, Error> {
         let db = DB::new(&Type::LMDB, c.get_home());
         let kv = KV::new(Index::new(db), Trigger::new());
-        let ws = WatchService {
-            trigger: Arc::clone(&kv.trigger),
-        };
-        let os = ObserveService {
+        let evs = EventService {
             trigger: Arc::clone(&kv.trigger),
         };
         let kvs = KVService {
             kv: Arc::new(Mutex::new(kv)),
         };
-        Ok(Service { kvs, ws, os })
+        let kas = KeepaliveService {};
+        Ok(Service { kvs, evs, kas })
     }
 
     pub fn build(&mut self) {}
@@ -109,12 +105,12 @@ impl Kv for KVService {
 }
 
 #[derive(Clone)]
-pub struct WatchService {
+pub struct EventService {
     trigger: Arc<Mut<Trigger>>,
 }
 
 #[tonic::async_trait]
-impl Watch for WatchService {
+impl Event for EventService {
     type WatchStream = WatchResponseStream;
 
     async fn watch(
@@ -138,31 +134,27 @@ impl Watch for WatchService {
         tokio::spawn(async move {
             let wid = create.watch_id;
             while wrx.changed().await.is_ok() {
+                /*
                 let event = Event {
                     action: wrx.borrow().action,
                     kv: wrx.borrow().kv.clone(),
                 };
+
+                 */
                 tx.send(Ok(WatchResponse {
                     watch_id: wid,
                     created: false,
                     canceled: false,
                     cancel_reason: "".to_string(),
-                    events: vec![event],
+                    //events: vec![event],
+                    events: vec![],
                 }))
                 .await;
             }
         });
         Ok(Response::new(ReceiverStream::new(rx)))
     }
-}
 
-#[derive(Clone)]
-pub struct ObserveService {
-    trigger: Arc<Mut<Trigger>>,
-}
-
-#[tonic::async_trait]
-impl Observe for ObserveService {
     type ObserveStream = ObserveResponseStream;
 
     async fn observe(
@@ -194,9 +186,28 @@ impl Observe for ObserveService {
                     cancel_reason: "".to_string(),
                     events: vec![],
                 }))
-                .await;
+                    .await;
             }
         });
         Ok(Response::new(ReceiverStream::new(rx)))
+    }
+}
+
+#[derive(Clone)]
+pub struct KeepaliveService {
+}
+
+#[tonic::async_trait]
+impl Keepalive for KeepaliveService {
+    type HeartbeatStream = KeepaliveStream;
+
+    async fn heartbeat(&self, request: Request<Streaming<HeartbeatRequest>>) -> Result<Response<Self::HeartbeatStream>, Status> {
+        todo!()
+    }
+
+    type StatusStream = KeepaliveStream;
+
+    async fn status(&self, request: Request<StatusRequest>) -> Result<Response<Self::StatusStream>, Status> {
+        todo!()
     }
 }

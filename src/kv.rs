@@ -1,4 +1,4 @@
-// Copyright 2021 redcar Project Authors. Licensed under Apache-2.0.
+// Copyright 2021 Redcar Project Authors. Licensed under Apache-2.0.
 
 use std::sync::{Arc, Mutex};
 use index::index::{Index};

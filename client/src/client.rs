@@ -3,8 +3,7 @@ use crate::config::Config;
 use tonic::{Request, Response};
 use tonic::transport::Channel;
 use proto::service::kv_client::KvClient;
-use proto::service::watch_client::WatchClient;
-use proto::service::observe_client::ObserveClient;
+use proto::service::event_client::EventClient;
 use proto::service::{PutRequest, RangeRequest, RangeResponse};
 
 #[derive(Clone)]

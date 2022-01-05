@@ -11,13 +11,13 @@ use tokio_stream::wrappers;
 use tonic::transport::Server;
 
 use proto::service::kv_server::KvServer;
-use proto::service::observe_server::ObserveServer;
-use proto::service::watch_server::WatchServer;
+use proto::service::event_server::EventServer;
+use proto::service::keepalive_server::KeepaliveServer;
 
 use utils::Error;
 
 use crate::config::Config;
-use crate::service::Service;
+use crate::service::{KeepaliveService, Service};
 use crate::os;
 
 const BACKLOG: u32 = 1024;
@@ -93,12 +93,12 @@ async fn server(num: usize, host: &str, service: Service, backlog: u32) {
     let listener = socket.listen(backlog).unwrap();
     let stream = wrappers::TcpListenerStream::new(listener);
     let kv = KvServer::new(service.kvs);
-    let watch = WatchServer::new(service.ws);
-    let observe = ObserveServer::new(service.os);
+    let event = EventServer::new(service.evs);
+    let keepalive = KeepaliveServer::new(service.kas);
     Server::builder()
         .add_service(kv)
-        .add_service(watch)
-        .add_service(observe)
+        .add_service(event)
+        .add_service(keepalive)
         .serve_with_incoming(stream)
         .await
         .unwrap()
