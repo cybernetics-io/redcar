@@ -9,6 +9,7 @@ fn main() {
                 "idl/service/kv.proto",
                 "idl/service/event.proto",
                 "idl/service/keepalive.proto",
+                "idl/service/health.proto"
             ],
             &["idl"],
         )

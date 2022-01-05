@@ -1,8 +1,10 @@
 use std::sync::Arc;
 use std::pin::Pin;
 
+use proto::service::health_check_response;
+use proto::service::health_server::Health;
 use proto::service::kv_server::Kv;
-use proto::service::{PutRequest, PutResponse, RangeRequest, RangeResponse, WatchCancel, WatchCreate, WatchRequest, WatchResponse, ObserveCancel, ObserveCreate, ObserveRequest, ObserveResponse, HeartbeatRequest, StatusRequest};
+use proto::service::{PutRequest, PutResponse, RangeRequest, RangeResponse, WatchCancel, WatchCreate, WatchRequest, WatchResponse, ObserveCancel, ObserveCreate, ObserveRequest, ObserveResponse, HeartbeatRequest, StatusRequest, HealthCheckRequest, HealthCheckResponse};
 use proto::txn::{KeyValue, Message};
 
 use async_stream;
@@ -22,7 +24,7 @@ use futures_util::stream::StreamExt;
 use futures_util::pin_mut;
 use tokio_stream::wrappers::ReceiverStream;
 use tokio::sync::mpsc;
-use tokio::sync::{Mutex, watch, broadcast};
+use tokio::sync::{Mutex, watch, broadcast, RwLock};
 use std::sync::Mutex as Mut;
 use proto::service::observe_request::ObserveType;
 use proto::service::watch_request::WatchType;
@@ -34,6 +36,7 @@ use trigger::{Action, Trigger};
 use trigger::Type as ActionType;
 use trigger::edge::Edge;
 use trigger::level::Level;
+use crate::ServingStatus;
 
 const CHANNEL_BUFFER_SIZE: usize = 512;
 
@@ -45,7 +48,8 @@ type KeepaliveStream = ReceiverStream<Result<Message, Status>>;
 pub struct Service {
     pub kvs: KVService,
     pub evs: EventService,
-    pub kas: KeepaliveService
+    pub kas: KeepaliveService,
+    pub hs: HealthService
 }
 
 impl Service {
@@ -59,7 +63,8 @@ impl Service {
             kv: Arc::new(Mutex::new(kv)),
         };
         let kas = KeepaliveService {};
-        Ok(Service { kvs, evs, kas })
+        let hs = HealthService::new(Arc::new(RwLock::new(HashMap::new())));
+        Ok(Service { kvs, evs, kas, hs })
     }
 
     pub fn build(&mut self) {}
@@ -209,5 +214,68 @@ impl Keepalive for KeepaliveService {
 
     async fn status(&self, request: Request<StatusRequest>) -> Result<Response<Self::StatusStream>, Status> {
         todo!()
+    }
+}
+
+type StatusPair = (watch::Sender<ServingStatus>, watch::Receiver<ServingStatus>);
+
+#[derive(Clone)]
+pub struct HealthService {
+    statuses: Arc<RwLock<HashMap<String, StatusPair>>>,
+}
+
+impl HealthService {
+    fn new(services: Arc<RwLock<HashMap<String, StatusPair>>>) -> Self {
+        HealthService { statuses: services }
+    }
+
+    async fn service_health(&self, service_name: &str) -> Option<ServingStatus> {
+        let reader = self.statuses.read().await;
+        reader.get(service_name).map(|p| *p.1.borrow())
+    }
+}
+
+#[tonic::async_trait]
+impl Health for HealthService {
+    async fn check(
+        &self,
+        request: Request<HealthCheckRequest>,
+    ) -> Result<Response<HealthCheckResponse>, Status> {
+        let service_name = request.get_ref().service.as_str();
+        let status = self.service_health(service_name).await;
+
+        match status {
+            None => Err(Status::not_found("service not registered")),
+            Some(status) => Ok(Response::new(HealthCheckResponse {
+                status: health_check_response::ServingStatus::from(status) as i32,
+            })),
+        }
+    }
+
+    type WatchStream =
+    Pin<Box<dyn Stream<Item = Result<HealthCheckResponse, Status>> + Send + Sync + 'static>>;
+
+    async fn watch(
+        &self,
+        request: Request<HealthCheckRequest>,
+    ) -> Result<Response<Self::WatchStream>, Status> {
+        let service_name = request.get_ref().service.as_str();
+        let mut status_rx = match self.statuses.read().await.get(service_name) {
+            None => return Err(Status::not_found("service not registered")),
+            Some(pair) => pair.1.clone(),
+        };
+
+        let output = async_stream::try_stream! {
+            // yield the current value
+            let status = health_check_response::ServingStatus::from(*status_rx.borrow()) as i32;
+            yield HealthCheckResponse { status };
+
+            while let Ok(_) = status_rx.changed().await {
+                let status = health_check_response::ServingStatus::from(*status_rx.borrow()) as i32;
+                yield HealthCheckResponse { status };
+            }
+        };
+
+        Ok(Response::new(Box::pin(output) as Self::WatchStream))
     }
 }

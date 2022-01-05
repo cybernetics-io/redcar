@@ -12,12 +12,13 @@ use tonic::transport::Server;
 
 use proto::service::kv_server::KvServer;
 use proto::service::event_server::EventServer;
+use proto::service::health_server::HealthServer;
 use proto::service::keepalive_server::KeepaliveServer;
 
 use utils::Error;
 
 use crate::config::Config;
-use crate::service::{KeepaliveService, Service};
+use crate::service::{KeepaliveService, KVService, Service};
 use crate::os;
 
 const BACKLOG: u32 = 1024;
@@ -95,10 +96,12 @@ async fn server(num: usize, host: &str, service: Service, backlog: u32) {
     let kv = KvServer::new(service.kvs);
     let event = EventServer::new(service.evs);
     let keepalive = KeepaliveServer::new(service.kas);
+    let health = HealthServer::new(service.hs);
     Server::builder()
         .add_service(kv)
         .add_service(event)
         .add_service(keepalive)
+        .add_service(health)
         .serve_with_incoming(stream)
         .await
         .unwrap()
