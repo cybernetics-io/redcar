@@ -15,7 +15,7 @@ trigger = { path="package/trigger", version = "0.1.0" }
 protobuf = "~2"
 structopt = "0.3"
 libc = "0.2"
-nix = "0.11"
+nix = "0.23"
 tonic = { version = "0.5", features = ["transport"]}
 prost = "0.8"
 tokio = { version = "1.0", features = ["macros", "rt-multi-thread"]}
